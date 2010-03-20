@@ -32,7 +32,7 @@ module Battlefield
 				salt = response.strings[1].scan(/../).collect{|a|a.hex.chr}.join
 				puts "decoded salt: #{salt.inspect}"
 				hash = Digest::MD5.digest(salt + admin_password)
-				hash_hex = hash.chars.collect{|a|sprintf("%02x", a.unpack('C*')[0])}.join.upcase
+				hash_hex = hash.unpack('H*').join.upcase
 
 				puts 'Computed password hash: ' + hash_hex
 
